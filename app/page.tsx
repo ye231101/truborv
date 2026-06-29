@@ -22,7 +22,6 @@ import {
   Quote,
   Repeat,
   ShieldCheck,
-  Sparkles,
   Truck,
   Users,
   Video,
@@ -65,7 +64,7 @@ const NAV_LINKS = [
 ];
 
 const SPECS = [
-  { Icon: Gauge, value: 'Detroit DD13', label: '525 HP · 1,850 lb-ft torque' },
+  { Icon: Gauge, value: 'Detroit DD13', label: '525 or 600 HP · 1,850 lb-ft torque' },
   { Icon: Truck, value: '20,000 LBS', label: 'Cargo & towing capacity' },
   { Icon: Cpu, value: 'DT12', label: '12-speed automatic — precise' },
   { Icon: Wind, value: 'Air Ride', label: 'Superior comfort, mile after mile' },
@@ -85,7 +84,7 @@ const SPECIALIST_POINTS = ['Real people', 'Real answers', 'No pressure', 'Built 
 
 const WHY_POINTS = [
   'Built on the Freightliner Cascadia® chassis',
-  'Detroit® DD13 525HP — Effortless power',
+  'Detroit® DD13 — 525 or 600 HP available',
   '20,000 LBS cargo — Take it all',
   'Air Ride — The smoothest ride',
   'DT12™ 12-speed automatic — Precision control',
@@ -94,7 +93,7 @@ const WHY_POINTS = [
 ];
 
 const TRUST_BAR = [
-  { Icon: Truck, title: 'Nationwide delivery', sub: 'To your door' },
+  { Icon: ShieldCheck, title: '2 + 3 Year Warranty', sub: 'Industry best' },
   { Icon: DollarSign, title: 'Financing available', sub: 'Competitive rates' },
   { Icon: Repeat, title: 'Trade-in welcome', sub: 'Top dollar' },
   { Icon: Users, title: 'Factory-trained team', sub: 'Here to help' },
@@ -578,8 +577,8 @@ export default function CenturionHome() {
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
             <div className="relative z-10 flex h-full max-w-md flex-col justify-center gap-3 p-8 sm:p-10">
               <Quote className="size-10 -scale-x-100" style={{ color: GOLD }} aria-hidden />
-              <p className="text-2xl leading-snug font-bold text-white sm:text-1xl">
-                Become who you are. <br></br>Do what you must. <br></br>Build your empire on wheels.
+              <p className="text-3xl leading-snug font-bold text-white sm:text-2xl">
+                Become who you are.
               </p>
               <p className="text-sm tracking-[0.2em] uppercase" style={{ color: GOLD }}>
                 — Nietzsche
@@ -708,16 +707,14 @@ export default function CenturionHome() {
         </div>
       </footer>
 
-      {/* ── Floating AI button ─────────────────────────────── */}
+      {/* ── Floating AI chat icon (subtle) ─────────────────── */}
       <button
         type="button"
-        aria-label="Talk to the Centurion AI"
+        aria-label="Chat with the Centurion AI"
         onClick={() => openAi()}
-        className="fixed right-4 bottom-6 z-50 flex cursor-pointer items-center gap-2 rounded-full px-4 py-3 text-sm font-extrabold tracking-wide text-black uppercase shadow-lg transition hover:opacity-90 sm:right-6"
-        style={{ backgroundColor: GOLD }}
+        className="fixed right-4 bottom-6 z-50 flex size-14 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-[#0a0a0a]/90 shadow-lg backdrop-blur transition hover:bg-[#0a0a0a] sm:right-6"
       >
-        <Sparkles className="size-5 shrink-0" strokeWidth={2} aria-hidden />
-        Ask AI
+        <MessageCircle className="size-6 shrink-0" style={{ color: GOLD }} strokeWidth={2} aria-hidden />
       </button>
 
       <LiveChatDialog open={chatOpen} onOpenChange={setChatOpen} chatContext={chatContext} />
