@@ -48,15 +48,15 @@ export default function InventoryDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center px-4 sm:min-h-[60vh]">
-        <Spinner className="text-muted-foreground size-8" />
+      <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-50 px-4">
+        <Spinner className="size-8 text-neutral-500" />
       </div>
     );
   }
 
   if (error || !unit) {
     return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center px-4 text-center sm:min-h-[60vh]">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-50 px-4 text-center">
         <p className="text-base font-semibold text-neutral-600 sm:text-lg">{error ?? 'Inventory not found'}</p>
         <Link
           href="/inventory"
@@ -71,7 +71,7 @@ export default function InventoryDetailPage() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-neutral-50 text-neutral-900">
       <InventoryDetail unit={unit} />
       <LiveChatTab
         chatContext={{
@@ -80,6 +80,6 @@ export default function InventoryDetailPage() {
           unitTitle: unit.title,
         }}
       />
-    </>
+    </div>
   );
 }

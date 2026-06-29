@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   ArrowRight,
   Award,
@@ -136,13 +137,7 @@ function SectionHeading({ kicker, title }: { kicker?: string; title: string }) {
   );
 }
 
-function CenturionCoachCard({
-  unit,
-  onViewDetails,
-}: {
-  unit: InventoryUnit;
-  onViewDetails: (unit: InventoryUnit) => void;
-}) {
+function CenturionCoachCard({ unit }: { unit: InventoryUnit }) {
   const { currentPrice } = getInventoryPricing(unit);
   const photoSrc = unit.images?.[0] || unit.thumbnails?.[0] || unit.defaultImageUrl || '';
   const isNew = unit.wI_InventoryType?.toLowerCase() === 'new';
@@ -201,14 +196,13 @@ function CenturionCoachCard({
         <p className="mt-1 text-lg font-black tracking-tight tabular-nums" style={{ color: GOLD }}>
           {currentPrice ? formatPrice(currentPrice) : 'Call for price'}
         </p>
-        <button
-          type="button"
-          onClick={() => onViewDetails(unit)}
+        <Link
+          href={`/inventory/${unit.id}`}
           className="mt-auto flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-md border border-white/15 bg-white/5 px-3 py-2 text-[11px] font-extrabold tracking-wide text-white uppercase transition hover:bg-white/10"
         >
           View details
           <ArrowRight className="size-3.5 shrink-0" strokeWidth={2.5} aria-hidden />
-        </button>
+        </Link>
       </div>
     </div>
   );
@@ -237,17 +231,6 @@ export default function CenturionHome() {
     setChatContext(context ?? CENTURION_CHAT_CONTEXT);
     setChatOpen(true);
   }, []);
-
-  const openUnitChat = useCallback(
-    (unit: InventoryUnit) => {
-      openAi({
-        body: 'class-c',
-        stockNumber: unit.stockNumber,
-        unitTitle: `Centurion ${unit.wI_Configuration}`.trim(),
-      });
-    },
-    [openAi],
-  );
 
   return (
     <div id="top" className="bg-[#0a0a0a] text-neutral-100">
@@ -540,7 +523,7 @@ export default function CenturionHome() {
                       key={unit.id}
                       className="basis-[80%] pl-4 sm:basis-[45%] lg:basis-1/4 xl:basis-1/5"
                     >
-                      <CenturionCoachCard unit={unit} onViewDetails={openUnitChat} />
+                      <CenturionCoachCard unit={unit} />
                     </CarouselItem>
                   ))}
                 </CarouselContent>

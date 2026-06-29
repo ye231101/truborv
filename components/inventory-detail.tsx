@@ -229,7 +229,13 @@ export function InventoryDetail({ unit }: { unit: InventoryUnit }) {
               <div className="flex h-full touch-pan-y">
                 {slides.map((src: string, i: number) => (
                   <div key={`${unit.id}-detail-${i}`} className="relative min-w-0 shrink-0 grow-0 basis-full">
-                    <img src={src} alt="" className="h-full w-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} />
+                    <img
+                      src={src}
+                      alt=""
+                      referrerPolicy="no-referrer"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 ))}
               </div>
@@ -281,7 +287,13 @@ export function InventoryDetail({ unit }: { unit: InventoryUnit }) {
                   }`}
                   aria-label={`Photo ${i + 1}`}
                 >
-                  <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" />
+                  <img
+                    src={src}
+                    alt=""
+                    referrerPolicy="no-referrer"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
                 </button>
               ))}
             </div>
@@ -565,6 +577,7 @@ export function InventoryDetail({ unit }: { unit: InventoryUnit }) {
                 <img
                   src={floorplanSrc}
                   alt="RV floorplan diagram"
+                  referrerPolicy="no-referrer"
                   className="mx-auto max-h-[420px] w-full object-contain p-6"
                 />
                 <button
@@ -628,6 +641,7 @@ export function InventoryDetail({ unit }: { unit: InventoryUnit }) {
             <img
               src={floorplanSrc}
               alt={`Floorplan for ${unit.title}`}
+              referrerPolicy="no-referrer"
               className="max-h-full max-w-full object-contain"
             />
           </div>

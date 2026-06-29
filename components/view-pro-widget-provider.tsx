@@ -63,6 +63,16 @@ const ViewProWidgetContext = createContext<ViewProWidgetContextValue | null>(nul
 export function ViewProWidgetProvider({ children }: { children: ReactNode }) {
   const [isAvailable, setIsAvailable] = useState(false);
   const [agents, setAgents] = useState<ViewProWidgetAgent[]>([]);
+  // Live agent availability is a client-only signal. The home page is statically
+  // prerendered with isAvailable=false, so we must keep the FIRST client render
+  // identical (offline) and only reveal live UI after mount — otherwise the
+  // header/CTA buttons differ between server HTML and client and React throws a
+  // hydration mismatch.
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     let ignore = false;
@@ -113,11 +123,11 @@ export function ViewProWidgetProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo(
     () => ({
-      isAvailable,
-      agents,
+      isAvailable: mounted && isAvailable,
+      agents: mounted ? agents : [],
       open,
     }),
-    [isAvailable, agents, open],
+    [mounted, isAvailable, agents, open],
   );
 
   return <ViewProWidgetContext.Provider value={value}>{children}</ViewProWidgetContext.Provider>;
