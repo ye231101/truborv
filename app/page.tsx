@@ -55,7 +55,7 @@ const CENTURION_CHAT_CONTEXT: LiveChatContext = {
 
 const NAV_LINKS = [
   { label: 'Home', href: '#top' },
-  { label: 'Floorplans', href: '#inventory' },
+  { label: 'Floorplans', href: '#floorplans' },
   { label: 'Features', href: '#features' },
   { label: 'Technology', href: '#specs' },
   { label: 'Inventory', href: '#inventory' },
@@ -64,12 +64,12 @@ const NAV_LINKS = [
 ];
 
 const SPECS = [
-  { Icon: Gauge, value: 'Detroit DD13', label: '525 or 600 HP · 1,850 lb-ft torque' },
-  { Icon: Truck, value: '20,000 LBS', label: 'Cargo & towing capacity' },
-  { Icon: Cpu, value: 'DT12', label: '12-speed automatic — precise' },
-  { Icon: Wind, value: 'Air Ride', label: 'Superior comfort, mile after mile' },
-  { Icon: ShieldCheck, value: 'Advanced Safety', label: 'Adaptive cruise · lane assist · ABS' },
-  { Icon: Award, value: 'Commercial Grade', label: 'Built on Freightliner Cascadia' },
+  { Icon: Gauge, value: 'Detroit DD13 / DD16', label: '525–600 HP · 1,850 lb-ft torque' },
+  { Icon: Cpu, value: 'DT12™ 12-Speed', label: 'Automated manual overdrive' },
+  { Icon: Truck, value: 'Cascadia 116 / 126', label: 'Freightliner® commercial chassis' },
+  { Icon: Wind, value: 'E-Z Drive Premier', label: 'Hydraulic Smart Level system' },
+  { Icon: ShieldCheck, value: 'All-Wheel Air Disc', label: '18k / 23k axles · TPMS' },
+  { Icon: Award, value: '120 gal Fuel', label: '20,000 lb hitch · 7-pin' },
 ];
 
 const AI_SAMPLE_QUESTIONS = [
@@ -83,13 +83,48 @@ const AI_SAMPLE_QUESTIONS = [
 const SPECIALIST_POINTS = ['Real people', 'Real answers', 'No pressure', 'Built for the Centurion'];
 
 const WHY_POINTS = [
-  'Built on the Freightliner Cascadia® chassis',
-  'Detroit® DD13 — 525 or 600 HP available',
-  '20,000 LBS cargo — Take it all',
-  'Air Ride — The smoothest ride',
-  'DT12™ 12-speed automatic — Precision control',
-  'Advanced safety systems — Drive with confidence',
-  'Luxury appointments — No compromise',
+  'Freightliner® Cascadia 116 & 126 chassis',
+  'Detroit® DD13 525 HP — or DD16 power on the 45D',
+  'DT12™ 12-speed automated manual overdrive',
+  'All-wheel air disc brakes · 18k front / 23k rear axles',
+  'Equalizer™ hydraulic Smart Level system',
+  'Sikkens® full-body paint — eight colors',
+  'Residential interiors — sleeps up to 5',
+];
+
+const FLOORPLANS = [
+  {
+    name: '39N',
+    length: "42'",
+    chassis: 'Freightliner® Cascadia 116 Day Cab',
+    engine: 'Detroit® DD13 · 525 HP',
+    blurb: 'Twin-bed flagship layout with residential galley and a full rear bath.',
+  },
+  {
+    name: '39K',
+    length: "42'",
+    chassis: 'Freightliner® Cascadia 116 Day Cab',
+    engine: 'Detroit® DD13 · 525 HP',
+    blurb: 'Kitchen-island floorplan built for everyday living on the road.',
+  },
+  {
+    name: '45D',
+    length: '45\u2032 10\u2033',
+    chassis: 'Freightliner® Cascadia 126',
+    engine: 'Detroit® DD16 · up to 600 HP',
+    blurb: 'The largest, most powerful Centurion — maximum space and torque.',
+  },
+];
+
+const PAINT_COLORS = [
+  { name: 'Celtic Gold', hex: '#b8932f' },
+  { name: 'Midnight Envy', hex: '#16243a' },
+  { name: 'Onyx Black', hex: '#0c0c0d' },
+  { name: 'Silver Fox', hex: '#9aa0a6' },
+  { name: 'True Blue', hex: '#1f4e8c' },
+  { name: 'Velocity Blue', hex: '#2b6fb3' },
+  { name: 'Crystal White', hex: '#eceef0' },
+  { name: 'Gray Storm', hex: '#5b6066' },
 ];
 
 const TRUST_BAR = [
@@ -375,6 +410,69 @@ export default function CenturionHome() {
               <p className="text-[11px] leading-snug text-neutral-400">{label}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── Floorplans ─────────────────────────────────────── */}
+      <section id="floorplans" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:py-20">
+        <SectionHeading kicker="Choose your floorplan" title="Three ways to command the road" />
+        <p className="mt-3 max-w-2xl text-sm text-neutral-400 sm:text-base">
+          42&apos; to 45&apos; 10&quot; · 104&quot; wide · sleeps up to 5. Every Centurion rides on a Freightliner®
+          Cascadia chassis with Detroit® diesel power.
+        </p>
+
+        <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          {FLOORPLANS.map((fp) => (
+            <div
+              key={fp.name}
+              className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-white/25"
+            >
+              <div className="flex items-baseline justify-between">
+                <h3 className="text-2xl font-black tracking-wide text-white uppercase">Centurion {fp.name}</h3>
+                <span className="text-sm font-bold" style={{ color: GOLD }}>
+                  {fp.length}
+                </span>
+              </div>
+              <div className="mt-4 flex flex-col gap-2 text-sm text-neutral-300">
+                <p className="flex items-center gap-2">
+                  <Truck className="size-4 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} aria-hidden />
+                  {fp.chassis}
+                </p>
+                <p className="flex items-center gap-2">
+                  <Gauge className="size-4 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} aria-hidden />
+                  {fp.engine}
+                </p>
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-400">{fp.blurb}</p>
+              <button
+                type="button"
+                onClick={() => openAi()}
+                className="mt-auto flex cursor-pointer items-center gap-1.5 pt-5 text-xs font-extrabold tracking-wide uppercase transition hover:opacity-80"
+                style={{ color: GOLD }}
+              >
+                Ask AI about the {fp.name}
+                <ArrowRight className="size-3.5 shrink-0" strokeWidth={2.5} aria-hidden />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12">
+          <h3 className="text-xs font-bold tracking-[0.28em] uppercase" style={{ color: GOLD }}>
+            Sikkens® full-body paint
+          </h3>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
+            {PAINT_COLORS.map((c) => (
+              <div key={c.name} className="flex items-center gap-2">
+                <span
+                  className="size-7 rounded-full border border-white/20 shadow-inner"
+                  style={{ backgroundColor: c.hex }}
+                  aria-hidden
+                />
+                <span className="text-xs font-medium text-neutral-300">{c.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
