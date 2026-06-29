@@ -283,15 +283,17 @@ export default function CenturionHome() {
 
           <div className="flex items-center gap-2">
             <div className="flex flex-col items-stretch gap-1.5">
-              <button
-                type="button"
-                onClick={() => setSeeLiveOpen(true)}
-                className="hidden items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-extrabold tracking-wide text-black uppercase transition hover:opacity-90 sm:flex"
-                style={{ backgroundColor: GOLD }}
-              >
-                <Video className="size-4 shrink-0" strokeWidth={2} aria-hidden />
-                See it live now
-              </button>
+              {isAvailable && (
+                <button
+                  type="button"
+                  onClick={() => setSeeLiveOpen(true)}
+                  className="hidden items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-extrabold tracking-wide text-black uppercase transition hover:opacity-90 sm:flex"
+                  style={{ backgroundColor: GOLD }}
+                >
+                  <Video className="size-4 shrink-0" strokeWidth={2} aria-hidden />
+                  See it live now
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => openAi()}
@@ -301,12 +303,6 @@ export default function CenturionHome() {
                 Talk to AI
               </button>
             </div>
-            {isAvailable ? (
-              <span className="hidden items-center gap-1.5 pl-1 text-[10px] font-semibold tracking-wide text-emerald-400 uppercase xl:flex">
-                <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />
-                Specialists online
-              </span>
-            ) : null}
           </div>
         </div>
       </header>
@@ -345,15 +341,17 @@ export default function CenturionHome() {
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <button
-                type="button"
-                onClick={() => setSeeLiveOpen(true)}
-                className="flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-sm font-extrabold tracking-wide text-black uppercase shadow-lg transition hover:opacity-90"
-                style={{ backgroundColor: GOLD }}
-              >
-                <Video className="size-5 shrink-0" strokeWidth={2} aria-hidden />
-                See it live now
-              </button>
+              {isAvailable && (
+                <button
+                  type="button"
+                  onClick={() => setSeeLiveOpen(true)}
+                  className="flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-sm font-extrabold tracking-wide text-black uppercase shadow-lg transition hover:opacity-90"
+                  style={{ backgroundColor: GOLD }}
+                >
+                  <Video className="size-5 shrink-0" strokeWidth={2} aria-hidden />
+                  See it live now
+                </button>
+              )}
               <button
                 type="button"
                 onClick={() => openAi()}
@@ -436,7 +434,8 @@ export default function CenturionHome() {
             </p>
           </div>
 
-          {/* See it Live */}
+          {/* See it Live — only when a specialist is online (agent app) */}
+          {isAvailable && (
           <div className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
             <div className="flex items-center gap-2">
               <Video className="size-6 shrink-0" style={{ color: GOLD }} aria-hidden />
@@ -464,6 +463,7 @@ export default function CenturionHome() {
             </button>
             <p className="mt-2 text-center text-[10px] tracking-wide text-neutral-500 uppercase">Powered by WebRTC</p>
           </div>
+          )}
 
           {/* Talk to a Specialist */}
           <div className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
@@ -624,15 +624,17 @@ export default function CenturionHome() {
               Limited inventory. Limitless destinations. Don&apos;t just dream it. Drive it.
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => setSeeLiveOpen(true)}
-            className="flex shrink-0 items-center justify-center gap-2 rounded-md px-7 py-4 text-sm font-extrabold tracking-wide text-black uppercase shadow-lg transition hover:opacity-90"
-            style={{ backgroundColor: GOLD }}
-          >
-            <Video className="size-5 shrink-0" strokeWidth={2} aria-hidden />
-            See it live now
-          </button>
+          {isAvailable && (
+            <button
+              type="button"
+              onClick={() => setSeeLiveOpen(true)}
+              className="flex shrink-0 items-center justify-center gap-2 rounded-md px-7 py-4 text-sm font-extrabold tracking-wide text-black uppercase shadow-lg transition hover:opacity-90"
+              style={{ backgroundColor: GOLD }}
+            >
+              <Video className="size-5 shrink-0" strokeWidth={2} aria-hidden />
+              See it live now
+            </button>
+          )}
         </div>
       </section>
 
