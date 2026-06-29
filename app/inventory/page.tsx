@@ -146,7 +146,8 @@ async function fetchInventories(params: {
   const query: Record<string, string | number> = {
     currentPage: params.currentPage,
     perPage: params.perPage,
-    body: 'class-b',
+    make: 'entegra',
+    model: 'centurion',
   };
   if (params.type === 'deals') {
     query.type = 'deals';
@@ -193,15 +194,8 @@ async function fetchInventories(params: {
   if (params.fuel != null && params.fuel !== '') {
     query.fuel = params.fuel;
   }
-  // if (params.filterBodies.length > 0) {
-  //   query.body = params.filterBodies.join(',');
-  // }
-  if (params.filterMakes.length > 0) {
-    query.make = params.filterMakes.join(',');
-  }
-  if (params.filterModels.length > 0) {
-    query.model = params.filterModels.join(',');
-  }
+  // This is the Entegra Centurion microsite: make/model are locked above so the
+  // listing only ever returns Centurion units, regardless of any stray params.
   if (params.filterInventoryTypes.length > 0) {
     query.inventoryType = params.filterInventoryTypes.join(',');
   }
@@ -641,30 +635,6 @@ export default function InventoryPage() {
                   contentClassName="min-w-[240px]"
                 />
               </div> */}
-              <div className="border-border flex min-w-0 flex-1 flex-col border-b px-2 py-1.5 md:border-r md:border-b-0 md:px-4 md:py-3">
-                <span className="text-muted-foreground text-xs font-medium">Make</span>
-                <FilterMultiSelect
-                  options={getMakeOptions({ body: 'class-b' })}
-                  selected={draftMakes}
-                  onChange={setDraftMakes}
-                  allLabel="All makes"
-                  countNoun="makes"
-                  triggerClassName="w-full justify-between rounded-none border-0 mt-1 shadow-none hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-                  contentClassName="min-w-[240px]"
-                />
-              </div>
-              <div className="border-border flex min-w-0 flex-1 flex-col border-b px-2 py-1.5 md:border-r md:border-b-0 md:px-4 md:py-3">
-                <span className="text-muted-foreground text-xs font-medium">Model</span>
-                <FilterMultiSelect
-                  options={getModelOptions({ body: 'class-b' })}
-                  selected={draftModels}
-                  onChange={setDraftModels}
-                  allLabel="All models"
-                  countNoun="models"
-                  triggerClassName="w-full justify-between rounded-none border-0 mt-1 shadow-none hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-                  contentClassName="min-w-[240px]"
-                />
-              </div>
               <div className="border-border flex min-w-0 flex-1 flex-col border-b px-2 py-1.5 md:border-r md:border-b-0 md:px-4 md:py-3">
                 <span className="text-muted-foreground text-xs font-medium">New/Used</span>
                 <FilterMultiSelect
