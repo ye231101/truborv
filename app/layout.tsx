@@ -13,11 +13,11 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 export const metadata: Metadata = {
   title: 'Centurion by Entegra Coach | La Mesa RV',
   description:
-    'The Entegra Centurion Super C on the Freightliner Cascadia chassis. See it live, talk to our AI specialist, and connect with a real Centurion expert.',
+    'The Entegra Centurion Super C on the Freightliner Cascadia chassis. Browse inventory, get your best price, and connect with a real Centurion specialist.',
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0a0a0a',
+  themeColor: '#ffffff',
 };
 
 const widgetUrl = buildViewProWidgetUrl();
@@ -30,8 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        style={{ backgroundColor: '#0a0a0a', color: '#f5f5f5' }}
-        className={`${inter.variable} flex min-h-screen flex-col bg-[#0a0a0a] font-sans text-neutral-100 antialiased`}
+        style={{ backgroundColor: '#ffffff', color: '#171717' }}
+        className={`${inter.variable} flex min-h-screen flex-col bg-white font-sans text-neutral-900 antialiased`}
       >
         <ViewProWidgetProvider>
           <Suspense>
